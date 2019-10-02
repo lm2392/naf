@@ -6,7 +6,7 @@ AFRAME.registerComponent('forward', {
   init: function() {
   	var worldDirection = new THREE.Vector3();
 
-    this.el.object3D.getWorldDirection(worldDirection);
+    this.el.object3D.worldDirection(worldDirection);
     worldDirection.multiplyScalar(-1);
 
     this.worldDirection = worldDirection;
