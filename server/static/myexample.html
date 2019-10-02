@@ -10,10 +10,10 @@
           var player = document.querySelector(".avatar")
           window.addEventListener("keydown", (e) => {
             if (e.code === "KeyR") {
-              var angle = player.getAttribute("rotation")
-              var x = 1 * Math.cos(angle.y * Math.PI / 180)
-              var y = 1 * Math.sin(angle.y * Math.PI / 180)
-              var pos = player.getAttribute("position")
+              var angle = player.getAttribute("rotation");
+              var x = 1 * Math.cos(angle.y * Math.PI / 180);
+              var y = 1 * Math.sin(angle.y * Math.PI / 180);
+              var pos = player.getAttribute("position");
               pos.x -= y;
               pos.z -= x;
               player.setAttribute("position", pos);
