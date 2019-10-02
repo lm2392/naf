@@ -24,3 +24,20 @@ AFRAME.registerComponent('forward', {
 	  el.setAttribute('position', newPosition);
   }
 });
+
+AFRAME.registerComponent("foo", {
+  init: function() {
+    var player = document.querySelector("#player")
+    window.addEventListener("keydown", (e) => {
+      if (e.code === "KeyR") {
+         var angle = player.getAttribute("rotation")
+         var x = 1 * Math.cos(angle.y * Math.PI / 180)
+         var y = 1 * Math.sin(angle.y * Math.PI / 180)
+         var pos = player.getAttribute("position")
+         pos.x -= y;
+         pos.z -= x;
+         player.setAttribute("position", pos);
+       }
+     })
+   }
+  })
