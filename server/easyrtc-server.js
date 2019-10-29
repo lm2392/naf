@@ -4,7 +4,6 @@ var express = require("express"); // web framework external module
 var serveStatic = require("serve-static"); // serve static files
 var socketIo = require("socket.io"); // web socket external module
 var easyrtc = require("easyrtc"); // EasyRTC external module
-var easyrtc_hybrid = require("easyrtc-hybrid");
 
 // Set process name
 process.title = "node-easyrtc";
