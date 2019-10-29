@@ -146,7 +146,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Cosmictour</title>
+    <title>Basic Example — Networked-Aframe</title>
     <meta name="description" content="Basic Example — Networked-Aframe">
 
     <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
@@ -208,9 +208,8 @@
   </head>
   <body>
     <a-scene networked-scene="
-    room: basic-audio;
-    debug: true;
-    audio: true;
+      room: basic;
+      debug: true;
     ">
       <a-assets>
 
@@ -220,8 +219,8 @@
         <!-- Templates -->
 
         <!-- Avatar -->
-        <template id="avatar-template" >
-          <a-entity class="avatar" networked-audio-source>
+        <template id="avatar-template">
+          <a-entity class="avatar">
             <a-sphere class="head"
               color="#5985ff"
               scale="0.45 0.5 0.4"
