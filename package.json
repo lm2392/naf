@@ -13,23 +13,31 @@
   "dependencies": {
     "body-parser": "1.19.0",
     "bootstrap": "4.3.1",
-    "dateformat": "3.0.3",
-    "ejs": "2.6.2",
-    "networked-aframe": "^0.5.0",
     "buffered-interpolation": "^0.2.3",
+    "cat-me": "^1.0.3",
+    "dateformat": "3.0.3",
     "easyrtc": "1.1.0",
-    "express": "^4.10.7",
+    "ejs": "2.6.2",
     "express-partials": "0.3.0",
     "jquery": "3.4.1",
     "mysql": "2.17.1",
+    "socket.io-client": "^1.4.5",
     "tether": "1.4.7",
-    "serve-static": "^1.8.0",
-    "socket.io": "^1.4.5",
-    "socket.io-client": "^1.4.5"
+    "webrtc": "^1.14.1"
   },
   "devDependencies": {
     "request": "^2.81.0",
-    "tape": "^4.7.0"
+    "tape": "^4.7.0",
+    "aframe": "^0.8.2",
+    "concurrently": "^4.0.1",
+    "express": "^4.16.3",
+    "http": "^0.0.0",
+    "networked-aframe": "^0.6.1",
+    "serve-static": "^1.13.2",
+    "socket.io": "^2.1.1",
+    "standard": "^12.0.1",
+    "watchify": "^3.11.0",
+    "webrtc-adapter": "^6.4.0"
   },
   "repository": {
     "type": "git",

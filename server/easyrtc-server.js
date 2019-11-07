@@ -4,6 +4,11 @@ var express = require("express");           // web framework external module
 var serveStatic = require('serve-static');  // serve static files
 var socketIo = require("socket.io");        // web socket external module
 var easyrtc = require("easyrtc");               // EasyRTC external module
+var catMe = require("cat-me");
+
+console.log(catMe());
+
+
 
 // Set process name
 process.title = "node-easyrtc";
@@ -13,7 +18,17 @@ var port = process.env.PORT || 8080;
 
 // Setup and configure Express http server. Expect a subfolder called "static" to be the web root.
 var app = express();
+
 app.use(serveStatic('server/static', {'index': ['myexample.html']}));
+
+
+app.get("/hello",function(req,res){
+    console.log('Hello!!!');
+});
+
+app.get("/user/:userId",function(req,res){
+    console.log('Hello user!!!');
+});
 
 // Start Express http server
 var webServer = http.createServer(app);
@@ -73,6 +88,7 @@ var rtc = easyrtc.listen(app, socketServer, null, function(err, rtcRef) {
         appObj.events.defaultListeners.roomCreate(appObj, creatorConnectionObj, roomName, roomOptions, callback);
     });
 });
+
 
 //listen on port
 webServer.listen(port, function () {
