@@ -5,6 +5,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
     <script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+    <!-- <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script> -->
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="custStyles.css" />
     <script>
       AFRAME.registerComponent("move", {
         init: function() {
@@ -60,13 +66,42 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
     <script src="../../easyrtc/easyrtc.js"></script>
     <script src="/js/forward.component.js"></script>
-    <a-scene networked-scene="
+    <a-scene
+   
+    networked-scene="
       room: basic-audio;
       debug: true;
       adapter: easyrtc;
       audio: true;
     ">
-     
+    
+        <div id = 'root' style="position: fixed; display: flexbox; z-index: 1000;"  class="Root">
+            
+        </div>
+        
+        <div id = 'scene' style="position: fixed; display: flexbox; z-index: 1000;" >
+            
+        </div>
+    
+
+     <div class="flexbox-container">
+        <div class="customClass2">
+          
+            <form action="" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="custun" placeholder="Username">
+                    <br>
+                    <input class="form-control" type="password" name="custPassword" placeholder="Password">
+                    <br>
+
+                    <input class="form-control" type="submit" name="submit">
+                </div>
+
+            </form>
+            <a href="signup.php">New user? :) </a>
+        </div>
+    </div>
+
     <a-assets>
       <template id="avatar-template" >
         <a-entity class="avatar" networked-audio-source >
@@ -118,9 +153,25 @@
       <a-entity light="color: #ccccff; intensity: 1; type: ambient;" visible=""></a-entity>
       <a-entity light="color: #ffaaff; intensity: 1.5" position="5 5 5"></a-entity>
 
-      <a-sky src="#sky" rotation="0 -90 0"></a-sky>
-      <a-entity id="particles" particle-system="preset: snow"></a-entity>
+      <!-- <a-sky src="#sky" rotation="0 -90 0"></a-sky> -->
+      <a-sky
+      animation="property: rotation; to: 0 360 0; dur: 480500; loop:true; easing: linear"
+      id="skyb" 
+      src="#sky"
+      radius="200">
+      </a-sky>    
+      <a-entity id="particles" particle-system="preset: snow ; size: .25"></a-entity>
 
+      <a-entity 
+            type= "1" 
+            position="0 10.25 -15" 
+            rotation="90 0 0"
+          
+            particle-system=
+            "maxAge:300; dragValue:1; size: .25 ;  positionSpread:100 50 100 ;  color: white,white;  accelerationValue: .000000000000000000000000000000000000000000000000000000000000000000000000000001 .000000000000000000000000000000000000000000000000000000000000000000000000000001 .000000000000000000000000000000000000000000000000000000000000000000000000000001;  velocityValue: .0000000000000000000000001 .00000000000000000000000020 .0000000000000000000000001;  randomise: true; 
+            "
+        >
+        </a-entity>  
 
             
       <a-entity position="0 0 0"
@@ -140,6 +191,23 @@
         var particles = document.getElementById('particles');
         particles.parentNode.removeChild(particles);
       }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" integrity="sha256-FiZMk1zgTeujzf/+vomWZGZ9r00+xnGvOgXoj0Jo1jA=" crossorigin="anonymous"></script>
+    <script type="text/babel">
+
+
+          let el = <h1 style={{color:'red'}}>Hello jose!</h1>;
+
+          var scene = document.getElementById('scene');
+
+          var box = <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>;
+
+
+          ReactDOM.render(<div>
+                            {el}
+                            {el}
+                            {el}
+                          </div> ,document.getElementById('scene'));
     </script>
   </body>
 </html>
