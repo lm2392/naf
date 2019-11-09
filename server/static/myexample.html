@@ -7,59 +7,74 @@
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
     <!-- <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script> -->
-    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="custStyles.css" />
     <script>
       AFRAME.registerComponent("move", {
         init: function() {
-          var player = document.querySelector("#player")
-          window.addEventListener("click", (e) => {
-          
-              var angle = player.getAttribute("rotation")
-              var x = 1 * Math.cos(angle.y * Math.PI / 180)
-              var y = 1 * Math.sin(angle.y * Math.PI / 180)
-              var pos = player.getAttribute("position")
-              pos.x -= y;
-              pos.z -= x;
-              player.setAttribute("position", pos);
-            
-          })
+          var player = document.querySelector("#player");
+          window.addEventListener("click", e => {
+            var angle = player.getAttribute("rotation");
+            var x = 1 * Math.cos((angle.y * Math.PI) / 180);
+            var y = 1 * Math.sin((angle.y * Math.PI) / 180);
+            var pos = player.getAttribute("position");
+            pos.x -= y;
+            pos.z -= x;
+            player.setAttribute("position", pos);
+          });
         }
-        });
+      });
 
-        AFRAME.registerComponent('spawn-in-circle', {
-          schema: {
-            radius: {type: 'number', default: 1}
-          },
-        
-          init: function() {
-            var el = this.el;
-            var center = el.getAttribute('position');
-        
-            var angleRad = this.getRandomAngleInRadians();
-            var circlePoint = this.randomPointOnCircle(this.data.radius, angleRad);
-            var worldPoint = {x: circlePoint.x + center.x, y: center.y, z: circlePoint.y + center.z};
-            el.setAttribute('position', worldPoint);
-        
-            var angleDeg = angleRad * 180 / Math.PI;
-            var angleToCenter = -1 * angleDeg + 90;
-            var rotationStr = '0 ' + angleToCenter + ' 0';
-            el.setAttribute('rotation', rotationStr);
-          },
-        
-          getRandomAngleInRadians: function() {
-            return Math.random()*Math.PI*2;
-          },
-        
-          randomPointOnCircle: function (radius, angleRad) {
-            x = Math.cos(angleRad)*radius;
-            y = Math.sin(angleRad)*radius;
-            return {x: x, y: y};
-          }
-        });
-        
+      AFRAME.registerComponent("spawn-in-circle", {
+        schema: {
+          radius: { type: "number", default: 1 }
+        },
+
+        init: function() {
+          var el = this.el;
+          var center = el.getAttribute("position");
+
+          var angleRad = this.getRandomAngleInRadians();
+          var circlePoint = this.randomPointOnCircle(
+            this.data.radius,
+            angleRad
+          );
+          var worldPoint = {
+            x: circlePoint.x + center.x,
+            y: center.y,
+            z: circlePoint.y + center.z
+          };
+          el.setAttribute("position", worldPoint);
+
+          var angleDeg = (angleRad * 180) / Math.PI;
+          var angleToCenter = -1 * angleDeg + 90;
+          var rotationStr = "0 " + angleToCenter + " 0";
+          el.setAttribute("rotation", rotationStr);
+        },
+
+        getRandomAngleInRadians: function() {
+          return Math.random() * Math.PI * 2;
+        },
+
+        randomPointOnCircle: function(radius, angleRad) {
+          x = Math.cos(angleRad) * radius;
+          y = Math.sin(angleRad) * radius;
+          return { x: x, y: y };
+        }
+      });
     </script>
   </head>
   <body>
@@ -72,109 +87,157 @@
       debug: true;
       adapter: easyrtc;
       audio: true;
-      ">
-        <a-entity></a-entity>
+      "
+    >
+      <a-entity></a-entity>
 
-        <div id = 'root' style="position: fixed; display: flexbox; z-index: 1000;"  class="Root">
-            
-        </div>
-    
-     <div class="flexbox-container">
+      <div
+        id="root"
+        style="position: fixed; display: flexbox; z-index: 1000;"
+        class="Root"
+      ></div>
+
+      <div class="flexbox-container">
         <div class="customClass2">
-          
-            <form action="" method="POST">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="custun" placeholder="Username">
-                    <br>
-                    <input class="form-control" type="password" name="custPassword" placeholder="Password">
-                    <br>
+          <form action="" method="POST">
+            <div class="form-group">
+              <input
+                class="form-control"
+                type="text"
+                name="custun"
+                placeholder="Username"
+              />
+              <br />
+              <input
+                class="form-control"
+                type="password"
+                name="custPassword"
+                placeholder="Password"
+              />
+              <br />
 
-                    <input class="form-control" type="submit" name="submit">
-                </div>
-
-            </form>
-            <a href="signup.php">New user? :) </a>
+              <input class="form-control" type="submit" name="submit" />
+            </div>
+          </form>
+          <a href="signup.php">New user? :) </a>
         </div>
-    </div>
+      </div>
 
-    <a-assets>
-      <template id="avatar-template" >
-        <a-entity class="avatar" networked-audio-source >
-          <a-sphere class="head"
-            color="#5985ff"
-            scale="0.45 0.5 0.4"
-          ></a-sphere>
-          <a-entity class="face"
-            position="0 0.05 0"
-          >
-            <a-sphere class="eye"
-              color="#efefef"
-              position="0.16 0.1 -0.35"
-              scale="0.12 0.12 0.12"
-            >
-              <a-sphere class="pupil"
-                color="#000"
-                position="0 0 -1"
-                scale="0.2 0.2 0.2"
-              ></a-sphere>
-            </a-sphere>
-            <a-sphere class="eye"
-              color="#efefef"
-              position="-0.16 0.1 -0.35"
-              scale="0.12 0.12 0.12"
-            >
-              <a-sphere class="pupil"
-                color="#000"
-                position="0 0 -1"
-                scale="0.2 0.2 0.2"
-              ></a-sphere>
-            </a-sphere>
+      <a-assets>
+        <template id="avatar-template">
+          <a-entity class="avatar" networked-audio-source>
+            <a-sphere
+              class="head"
+              color="#5985ff"
+              scale="0.45 0.5 0.4"
+            ></a-sphere>
+            <a-entity class="face" position="0 0.05 0">
+              <a-sphere
+                class="eye"
+                color="#efefef"
+                position="0.16 0.1 -0.35"
+                scale="0.12 0.12 0.12"
+              >
+                <a-sphere
+                  class="pupil"
+                  color="#000"
+                  position="0 0 -1"
+                  scale="0.2 0.2 0.2"
+                ></a-sphere>
+              </a-sphere>
+              <a-sphere
+                class="eye"
+                color="#efefef"
+                position="-0.16 0.1 -0.35"
+                scale="0.12 0.12 0.12"
+              >
+                <a-sphere
+                  class="pupil"
+                  color="#000"
+                  position="0 0 -1"
+                  scale="0.2 0.2 0.2"
+                ></a-sphere>
+              </a-sphere>
+            </a-entity>
           </a-entity>
-        </a-entity>
-      </template>
+        </template>
 
-      <img id="grid" src="https://img.gs/bbdkhfbzkk/stretch/https://i.imgur.com/25P1geh.png" crossorigin="anonymous">
-      <img id="sky" src="https://raw.githubusercontent.com/lm2392/cosmictour/master/src/sky.png" crossorigin="anonymous" />
-      
-    </a-assets>
+        <img
+          id="grid"
+          src="https://img.gs/bbdkhfbzkk/stretch/https://i.imgur.com/25P1geh.png"
+          crossorigin="anonymous"
+        />
+        <img
+          id="sky"
+          src="https://raw.githubusercontent.com/lm2392/cosmictour/master/src/sky.png"
+          crossorigin="anonymous"
+        />
+      </a-assets>
 
-    <a-entity move id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" camera position="0 1.3 0" spawn-in-circle="radius:3;" wasd-controls look-controls></a-entity>
+      <a-entity
+        move
+        id="player"
+        networked="template:#avatar-template;attachTemplateToLocal:false;"
+        camera
+        position="0 1.3 0"
+        spawn-in-circle="radius:3;"
+        wasd-controls
+        look-controls
+      ></a-entity>
 
+      <a-entity
+        position="0 0 0"
+        geometry="primitive: plane; width: 10000; height: 10000;"
+        rotation="-90 0 0"
+        material="src: #grid; repeat: 10000 10000; transparent: true; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;"
+      ></a-entity>
 
-      <a-entity position="0 0 0"
-        geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0"
-        material="src: #grid; repeat: 10000 10000; transparent: true; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;"></a-entity>
-
-      <a-entity light="color: #ccccff; intensity: 1; type: ambient;" visible=""></a-entity>
-      <a-entity light="color: #ffaaff; intensity: 1.5" position="5 5 5"></a-entity>
+      <a-entity
+        light="color: #ccccff; intensity: 1; type: ambient;"
+        visible=""
+      ></a-entity>
+      <a-entity
+        light="color: #ffaaff; intensity: 1.5"
+        position="5 5 5"
+      ></a-entity>
 
       <a-sky
-      animation="property: rotation; to: 0 360 0; dur: 480500; loop:true; easing: linear"
-      id="skyb" 
-      src="#sky"
-      radius="200">
-      </a-sky>    
+        animation="property: rotation; to: 0 360 0; dur: 480500; loop:true; easing: linear"
+        id="skyb"
+        src="#sky"
+        radius="200"
+      >
+      </a-sky>
 
-      <a-entity id="particles" particle-system="preset: snow ; size: .25"></a-entity>
+      <a-entity
+        id="particles"
+        particle-system="preset: snow ; size: .25"
+      ></a-entity>
 
-      <a-entity 
-            type= "1" 
-            position="0 10.25 -15" 
-            rotation="90 0 0"
-            particle-system=
-            "maxAge:300; dragValue:1; size: .25 ;  positionSpread:100 50 100 ;  color: white,white;  accelerationValue: .000000000000000000000000000000000000000000000000000000000000000000000000000001 .000000000000000000000000000000000000000000000000000000000000000000000000000001 .000000000000000000000000000000000000000000000000000000000000000000000000000001;  velocityValue: .0000000000000000000000001 .00000000000000000000000020 .0000000000000000000000001;  randomise: true; 
+      <a-entity
+        type="1"
+        position="0 10.25 -15"
+        rotation="90 0 0"
+        particle-system="maxAge:300; dragValue:1; size: .25 ;  positionSpread:100 50 100 ;  color: white,white;  accelerationValue: .000000000000000000000000000000000000000000000000000000000000000000000000000001 .000000000000000000000000000000000000000000000000000000000000000000000000000001 .000000000000000000000000000000000000000000000000000000000000000000000000000001;  velocityValue: .0000000000000000000000001 .00000000000000000000000020 .0000000000000000000000001;  randomise: true; 
             "
-        >
-        </a-entity>  
+      >
+      </a-entity>
 
-            
-      <a-entity position="0 0 0"
-      geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0"
-      material="src: #grid; repeat: 10000 10000; transparent: true; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;"></a-entity>
+      <a-entity
+        position="0 0 0"
+        geometry="primitive: plane; width: 10000; height: 10000;"
+        rotation="-90 0 0"
+        material="src: #grid; repeat: 10000 10000; transparent: true; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;"
+      ></a-entity>
 
-      <a-entity light="color: #ccccff; intensity: 1; type: ambient;" visible=""></a-entity>
-      <a-entity light="color: #ffaaff; intensity: 1.5" position="5 5 5"></a-entity>
-
+      <a-entity
+        light="color: #ccccff; intensity: 1; type: ambient;"
+        visible=""
+      ></a-entity>
+      <a-entity
+        light="color: #ffaaff; intensity: 1.5"
+        position="5 5 5"
+      ></a-entity>
     </a-scene>
 
     <script>
@@ -182,36 +245,61 @@
       var isMobile = AFRAME.utils.device.isMobile();
 
       if (isMobile) {
-        var particles = document.getElementById('particles');
+        var particles = document.getElementById("particles");
         particles.parentNode.removeChild(particles);
       }
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" integrity="sha256-FiZMk1zgTeujzf/+vomWZGZ9r00+xnGvOgXoj0Jo1jA=" crossorigin="anonymous"></script>
-    
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
+      integrity="sha256-FiZMk1zgTeujzf/+vomWZGZ9r00+xnGvOgXoj0Jo1jA="
+      crossorigin="anonymous"
+    ></script>
+
     <script type="text/babel">
+      let el = <h1 style={{ color: "red" }}>Hello jose!</h1>;
 
-          let el = <h1 style={{color:'red'}}>Hello jose!</h1>;
+      const MyComponent = class MyComponent extends React.Component {
+        render() {
+          return <p>I am a component, too!</p>;
+        }
+      };
 
-          var scene = document.getElementById('a-root');
+      var scene = document.getElementById("a-root");
 
-          var box = <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-          
-          var box2 = <a-box position="-2 2 4" rotation="0 45 0" color="#4CffD9"></a-box>
+      var box = (
+        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+      );
 
+      var box2 = (
+        <a-box position="-2 2 4" rotation="0 45 0" color="#4CffD9"></a-box>
+      );
 
+      const BOX3 = class BOX extends React.Component {
+        render() {
+          return (
+            <a-box position="1 -.5 3" rotation="0 45 0" color="red"></a-box>
+          );
+        }
+      };
 
-          ReactDOM.render(
-                        <a-entity>
-                          {box}
-                          {box2}
-                        </a-entity>                           
-                           ,document.getElementsByTagName('a-entity')[0]);
+      ReactDOM.render(
+        <a-entity>
+          <BOX3 />
+          {box}
+          {box2}
+        </a-entity>,
+        document.getElementsByTagName("a-entity")[0]
+      );
 
-          ReactDOM.render(
-                          el                            
-                           ,document.getElementById('root'));
-                           
+      ReactDOM.render(
+        <div>
+          <MyComponent />
+          {el}
+          {el}
+          {el}
+        </div>,
+        document.getElementById("root")
+      );
     </script>
-
   </body>
 </html>
