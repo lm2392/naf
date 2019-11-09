@@ -67,14 +67,13 @@
     <script src="../../easyrtc/easyrtc.js"></script>
     <script src="/js/forward.component.js"></script>
     <a-scene
-   
-    networked-scene="
+      networked-scene="
       room: basic-audio;
       debug: true;
       adapter: easyrtc;
       audio: true;
-    ">
-    
+      ">
+        <a-entity></a-entity>
         <div id = 'root' style="position: fixed; display: flexbox; z-index: 1000;"  class="Root">
             
         </div>
@@ -153,26 +152,26 @@
       <a-entity light="color: #ccccff; intensity: 1; type: ambient;" visible=""></a-entity>
       <a-entity light="color: #ffaaff; intensity: 1.5" position="5 5 5"></a-entity>
 
-      <!-- <a-sky src="#sky" rotation="0 -90 0"></a-sky> -->
       <a-sky
       animation="property: rotation; to: 0 360 0; dur: 480500; loop:true; easing: linear"
       id="skyb" 
       src="#sky"
       radius="200">
       </a-sky>    
+
       <a-entity id="particles" particle-system="preset: snow ; size: .25"></a-entity>
 
       <a-entity 
             type= "1" 
             position="0 10.25 -15" 
             rotation="90 0 0"
-          
             particle-system=
             "maxAge:300; dragValue:1; size: .25 ;  positionSpread:100 50 100 ;  color: white,white;  accelerationValue: .000000000000000000000000000000000000000000000000000000000000000000000000000001 .000000000000000000000000000000000000000000000000000000000000000000000000000001 .000000000000000000000000000000000000000000000000000000000000000000000000000001;  velocityValue: .0000000000000000000000001 .00000000000000000000000020 .0000000000000000000000001;  randomise: true; 
             "
         >
         </a-entity>  
 
+        <a-entity id='a-root'></a-entity>
             
       <a-entity position="0 0 0"
       geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0"
@@ -193,21 +192,25 @@
       }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" integrity="sha256-FiZMk1zgTeujzf/+vomWZGZ9r00+xnGvOgXoj0Jo1jA=" crossorigin="anonymous"></script>
+    
     <script type="text/babel">
 
 
           let el = <h1 style={{color:'red'}}>Hello jose!</h1>;
 
-          var scene = document.getElementById('scene');
+          var scene = document.getElementById('a-root');
 
-          var box = <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>;
+          var box = React.createElement("a-box", {
+                  position: "-1 0.5 -3",
+                  rotation: "0 45 0",
+                  color: "#4CC3D9"
+                });
 
 
-          ReactDOM.render(<div>
-                            {el}
-                            {el}
-                            {el}
-                          </div> ,document.getElementById('scene'));
+          ReactDOM.render(
+                          box                            
+                           ,document.getElementsByTagName('a-entity')[0]);
     </script>
+
   </body>
 </html>
