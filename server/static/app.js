@@ -15,9 +15,16 @@ var box = (
 var box2 = <a-box position="-2 2 4" rotation="0 45 0" color="#4CffD9"></a-box>;
 
 const BOX3 = class BOX extends React.Component {
-  render() {
-    return <a-box color="red" position="0 1.6 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"></a-box>;
-  }
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+      }
+      handleClick() {
+        console.log('Click happened');
+    }
+    render() {
+        return <a-box onClick={this.handleClick} color="red" position="0 1.6 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"></a-box>;
+    }
 };
 
 ReactDOM.render(
