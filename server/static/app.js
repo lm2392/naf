@@ -2,7 +2,7 @@ let el = <h1 style={{ color: "red" }}>Hello jose!</h1>;
 
 const MyComponent = class MyComponent extends React.Component {
   render() {
-    return <p>I am a component, too!</p>;
+    return <p style = {{color:'red'}}>I am a component, too!</p>;
   }
 };
 
@@ -16,13 +16,13 @@ var box2 = <a-box position="-2 2 4" rotation="0 45 0" color="#4CffD9"></a-box>;
 
 const BOX3 = class BOX extends React.Component {
   render() {
-    return <a-box position="1 -.5 3" rotation="0 45 0" color="red"></a-box>;
+    return <a-box color="red" position="0 1.6 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"></a-box>;
   }
 };
 
 ReactDOM.render(
   <a-entity>
-    <BOX3 pos></BOX3>
+    <BOX3></BOX3>
     {box}
     {box2}
   </a-entity>,
