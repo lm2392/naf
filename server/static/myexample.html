@@ -97,8 +97,7 @@
         class="Root"
       ></div>
 
-  
-    <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
+      <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
 
       <div class="flexbox-container">
         <div class="customClass2">
@@ -199,10 +198,10 @@
         light="color: #ccccff; intensity: 1; type: ambient;"
         visible=""
       ></a-entity>
-      <a-entity
+      <!-- <a-entity
         light="color: #ffaaff; intensity: 1.5"
         position="5 5 5"
-      ></a-entity>
+      ></a-entity> -->
 
       <a-sky
         animation="property: rotation; to: 0 360 0; dur: 480500; loop:true; easing: linear"
@@ -235,11 +234,7 @@
 
       <a-entity
         light="color: #ccccff; intensity: 1; type: ambient;"
-        visible=""
-      ></a-entity>
-      <a-entity
-        light="color: #ffaaff; intensity: 1.5"
-        position="5 5 5"
+        visible="false"
       ></a-entity>
     </a-scene>
 
@@ -258,7 +253,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="app.js" type="text/babel">
-    </script>
+    <script src="app.js" type="text/babel"></script>
   </body>
 </html>

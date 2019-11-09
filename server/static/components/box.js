@@ -1,14 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
 import "aframe";
 import "babel-polyfill";
 import "aframe-particle-system-component";
 
-
-class BOX extends Component {
-    render() { 
-        return (<a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-        );
-    }
+export default class BOX extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    console.log("Click happened");
+  }
+  render() {
+    return (
+      <a-box
+        onClick={this.handleClick}
+        color="red"
+        position="0 1.6 0"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+      ></a-box>
+    );
+  }
 }
- 
-export default BOX;

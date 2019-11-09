@@ -2,7 +2,7 @@ let el = <h1 style={{ color: "red" }}>Hello jose!</h1>;
 
 const MyComponent = class MyComponent extends React.Component {
   render() {
-    return <p style = {{color:'red'}}>I am a component, too!</p>;
+    return <p style={{ color: "red" }}>I am a component, too!</p>;
   }
 };
 
@@ -13,6 +13,8 @@ var box = (
 );
 
 var box2 = <a-box position="-2 2 4" rotation="0 45 0" color="#4CffD9"></a-box>;
+
+var box4 = <a-box position="0 0 0" rotation="45 45 45" color="#aa11ff"></a-box>;
 
 const BOX3 = class BOX extends React.Component {
     constructor(props) {
@@ -31,6 +33,7 @@ ReactDOM.render(
   <a-entity>
     <BOX3></BOX3>
     {box}
+    {<a-box position="0 0 0" rotation="45 45 45" color="#aa11ff"></a-box>}
     {box2}
   </a-entity>,
   document.getElementsByTagName("a-entity")[0]
