@@ -22,7 +22,7 @@ const BOX3 = class BOX extends React.Component {
 
 ReactDOM.render(
   <a-entity>
-    <BOX3 />
+    <BOX3 pos></BOX3>
     {box}
     {box2}
   </a-entity>,
