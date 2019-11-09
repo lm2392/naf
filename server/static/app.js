@@ -25,7 +25,7 @@ const BOX3 = class BOX extends React.Component {
         console.log('Click happened');
     }
     render() {
-        return <a-box onClick={this.handleClick} color="red" position="0 1.6 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"></a-box>;
+        return <a-box onClick={this.handleClick} color="red" position="0 1.6 0"></a-box>;
     }
 };
 
