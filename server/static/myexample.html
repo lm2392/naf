@@ -74,15 +74,11 @@
       audio: true;
       ">
         <a-entity></a-entity>
+
         <div id = 'root' style="position: fixed; display: flexbox; z-index: 1000;"  class="Root">
             
         </div>
-        
-        <div id = 'scene' style="position: fixed; display: flexbox; z-index: 1000;" >
-            
-        </div>
     
-
      <div class="flexbox-container">
         <div class="customClass2">
           
@@ -209,6 +205,9 @@
           ReactDOM.render(
                           box                            
                            ,document.getElementsByTagName('a-entity')[0]);
+          ReactDOM.render(
+                          el                            
+                           ,document.getElementById('root'));
     </script>
 
   </body>
