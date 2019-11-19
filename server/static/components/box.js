@@ -1,7 +1,5 @@
-import React from "react";
-import "aframe";
-import "babel-polyfill";
-import "aframe-particle-system-component";
+
+import React from 'react';
 
 export default class BOX extends React.Component {
   constructor(props) {
