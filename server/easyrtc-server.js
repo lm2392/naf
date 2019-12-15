@@ -7,6 +7,7 @@ var socketIo = require("socket.io"); // web socket external module
 var easyrtc = require("easyrtc"); // EasyRTC external module
 var catMe = require("cat-me");
 var fs = require("fs");
+var path = require('path');
 
 let string = "";
 
@@ -35,9 +36,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
-app.get("/", function(req, res) {
-  res.send('<h1>hello luis moscoso!</h1>');
-});
+// app.get("/", function(req, res) {
+//   res.sendFile(path.join(__dirname, '/static','test.html'));
+// });
+
+app.use(express.static(path.join(__dirname,'static')));
 
 app.get("/hello", function(req, res) {
   console.log("Hello!!!");

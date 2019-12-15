@@ -1,83 +1,76 @@
-<!DOCTYPE html>
 <html>
   <head>
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
     <script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js"></script>
+    <script src="easyrtc/easyrtc.js"></script>
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
-    <script
-      crossorigin
-      src="https://unpkg.com/react@16/umd/react.development.js"
-    ></script>
-    <script
-      crossorigin
-      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
-    ></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <link rel="stylesheet" href="css/custStyles.css">
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="custStyles.css" />
     <script>
-      AFRAME.registerComponent("move", {
-        init: function() {
-          var player = document.querySelector("#player");
-          window.addEventListener("click", e => {
-            var angle = player.getAttribute("rotation");
-            var x = 1 * Math.cos((angle.y * Math.PI) / 180);
-            var y = 1 * Math.sin((angle.y * Math.PI) / 180);
-            var pos = player.getAttribute("position");
-            pos.x -= y;
-            pos.z -= x;
-            player.setAttribute("position", pos);
-          });
-        }
-      });
-
-      AFRAME.registerComponent("spawn-in-circle", {
-        schema: {
-          radius: { type: "number", default: 1 }
-        },
-
-        init: function() {
-          var el = this.el;
-          var center = el.getAttribute("position");
-
-          var angleRad = this.getRandomAngleInRadians();
-          var circlePoint = this.randomPointOnCircle(
-            this.data.radius,
-            angleRad
-          );
-          var worldPoint = {
-            x: circlePoint.x + center.x,
-            y: center.y,
-            z: circlePoint.y + center.z
-          };
-          el.setAttribute("position", worldPoint);
-
-          var angleDeg = (angleRad * 180) / Math.PI;
-          var angleToCenter = -1 * angleDeg + 90;
-          var rotationStr = "0 " + angleToCenter + " 0";
-          el.setAttribute("rotation", rotationStr);
-        },
-
-        getRandomAngleInRadians: function() {
-          return Math.random() * Math.PI * 2;
-        },
-
-        randomPointOnCircle: function(radius, angleRad) {
-          x = Math.cos(angleRad) * radius;
-          y = Math.sin(angleRad) * radius;
-          return { x: x, y: y };
-        }
-      });
-    </script>
+        AFRAME.registerComponent("move", {
+          init: function() {
+            var player = document.querySelector("#player");
+            window.addEventListener("click", e => {
+              var angle = player.getAttribute("rotation");
+              var x = 1 * Math.cos((angle.y * Math.PI) / 180);
+              var y = 1 * Math.sin((angle.y * Math.PI) / 180);
+              var pos = player.getAttribute("position");
+              pos.x -= y;
+              pos.z -= x;
+              player.setAttribute("position", pos);
+            });
+          }
+        });
+  
+        AFRAME.registerComponent("spawn-in-circle", {
+          schema: {
+            radius: { type: "number", default: 1 }
+          },
+  
+          init: function() {
+            var el = this.el;
+            var center = el.getAttribute("position");
+  
+            var angleRad = this.getRandomAngleInRadians();
+            var circlePoint = this.randomPointOnCircle(
+              this.data.radius,
+              angleRad
+            );
+            var worldPoint = {
+              x: circlePoint.x + center.x,
+              y: center.y,
+              z: circlePoint.y + center.z
+            };
+            el.setAttribute("position", worldPoint);
+  
+            var angleDeg = (angleRad * 180) / Math.PI;
+            var angleToCenter = -1 * angleDeg + 90;
+            var rotationStr = "0 " + angleToCenter + " 0";
+            el.setAttribute("rotation", rotationStr);
+          },
+  
+          getRandomAngleInRadians: function() {
+            return Math.random() * Math.PI * 2;
+          },
+  
+          randomPointOnCircle: function(radius, angleRad) {
+            x = Math.cos(angleRad) * radius;
+            y = Math.sin(angleRad) * radius;
+            return { x: x, y: y };
+          }
+        });
+      </script>
   </head>
   <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
-    <script src="../../easyrtc/easyrtc.js"></script>
-    <a-scene
+      <a-scene
       networked-scene="
       room: basic-audio;
       debug: true;
@@ -93,33 +86,6 @@
         class="Root"
       ></div>
 
-      <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
-
-      <div class="flexbox-container">
-        <div class="customClass2">
-          <form action="" method="POST">
-            <div class="form-group">
-              <input
-                class="form-control"
-                type="text"
-                name="custun"
-                placeholder="Username"
-              />
-              <br />
-              <input
-                class="form-control"
-                type="password"
-                name="custPassword"
-                placeholder="Password"
-              />
-              <br />
-
-              <input class="form-control" type="submit" name="submit" />
-            </div>
-          </form>
-          <a href="signup.php">New user? :) </a>
-        </div>
-      </div>
 
       <a-assets>
         <template id="avatar-template">
@@ -172,6 +138,32 @@
         />
       </a-assets>
 
+      <div class="flexbox-container">
+          <div class="customClass2">
+            <form action="" method="POST">
+              <div class="form-group">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="custun"
+                  placeholder="Username"
+                />
+                <br />
+                <input
+                  class="form-control"
+                  type="password"
+                  name="custPassword"
+                  placeholder="Password"
+                />
+                <br />
+  
+                <input class="form-control" type="submit" name="submit" />
+              </div>
+            </form>
+            <a href="signup.php">New user? :) </a>
+          </div>
+        </div>
+        
       <a-entity
         move
         id="player"
@@ -243,13 +235,57 @@
         particles.parentNode.removeChild(particles);
       }
     </script> -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
-      integrity="sha256-FiZMk1zgTeujzf/+vomWZGZ9r00+xnGvOgXoj0Jo1jA="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+   <script type="text/babel">
+   let el = <h1 style={{ color: "red" }}>Hello jose!</h1>;
 
-    
-    <script src="app.js" type="text/babel"></script>
+const MyComponent = class MyComponent extends React.Component {
+  render() {
+    return <p style={{ color: "red" }}>I am a component, too!</p>;
+  }
+};
+
+var box = (
+  <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+);
+
+var box2 = <a-box position="-2 2 4" rotation="0 45 0" color="#4CffD9"></a-box>;
+
+var box4 = <a-box position="0 0 0" rotation="45 45 45" color="#aa11ff"></a-box>;
+
+const BOX3 = class BOX extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+      }
+      handleClick() {
+        console.log('Click happened');
+    }
+    render() {
+        return <a-box onClick={this.handleClick} color="red" position="0 1.6 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"></a-box>;
+    }
+};
+
+ReactDOM.render(
+  <a-entity>
+    <BOX3></BOX3>
+    {box}
+    {<a-box position="0 0 0" rotation="45 45 45" color="#aa11ff"></a-box>}
+    {box2}
+  </a-entity>,
+  document.getElementsByTagName("a-entity")[0]
+);
+
+ReactDOM.render(
+  <div>
+    <MyComponent />
+    {el}
+    {el}
+    {el}
+  </div>,
+  document.getElementById("root")
+);
+
+   </script>
   </body>
 </html>

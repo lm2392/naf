@@ -1,8 +1,8 @@
-let el = <h1 style={{ color: "red" }}>Hello jose!</h1>;
+let el = <h1 style={{ color: "yellow" }}>Hello jose!</h1>;
 
 const MyComponent = class MyComponent extends React.Component {
   render() {
-    return <p style={{ color: "red" }}>I am a component, too!</p>;
+    return <p style={{ color: "red" }}>I am a component, too! {this.props.name}</p>;
   }
 };
 
@@ -39,7 +39,9 @@ ReactDOM.render(
 
 ReactDOM.render(
   <div>
-    <MyComponent />
+    <MyComponent name="Luigi"/>
+    <MyComponent name="jose"/>
+    <MyComponent name="nicole"/>
     {el}
     {el}
     {el}
